@@ -1,0 +1,66 @@
+﻿@page
+@model MovieReviewer.Pages.Admins.Actors.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Actor[0].Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Actor[0].Dob)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Actor[0].Img)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Actor[0].Detail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Actor[0].Nationality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Actor[0].Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Actor) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dob)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Img)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Detail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nationality)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ActorId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ActorId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ActorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

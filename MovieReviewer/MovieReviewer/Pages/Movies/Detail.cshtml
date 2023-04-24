@@ -1,0 +1,125 @@
+﻿@page
+@using MovieReviewer.Logic;
+@using MovieReviewer.Models;
+@using Newtonsoft.Json;
+@using Microsoft.AspNetCore.Http
+@model MovieReviewer.Pages.Movies.DetailModel
+@{
+}
+<style>
+    .fillcolor {
+        color: red;
+    }
+
+     
+
+</style>
+<div margine="max-width:80%; margin:0 auto">
+    <h3>Movie Detail</h3>
+    <div class="row">
+        <div class="col-md-3" style="height:350px">
+            <img style="height:350px;width:247px; object-fit: contain" src="@Model.Movie.Poster" alt="">
+        </div>
+        <div class=" col-md-9">
+            <div class="row">
+                <h3 class="col-md-10">@Model.Movie.MovieName</h3>
+                <input type="hidden" value="@Model.Movie.MovieId" id="mid" />
+                @{
+                    var setting = new JsonSerializerSettings();
+                    setting.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    //string json = Context.Session.GetString("user");
+                    string json = HttpContext.Session.GetString("user");
+                    //string json1 = Context.Session.GetString("user");
+                    User user = null;
+                    if (json != null)
+                    {
+                        user = JsonConvert.DeserializeObject<User>(json, setting);
+                    }
+                    bool checkLove = false;
+                    if (user != null)
+                    {
+                        checkLove = MovieLogic.CheckLoveMovie(user.Id, Model.Movie.MovieId);
+                    }
+                }
+                <svg class="col-md-2
+                @{
+                            if(checkLove)
+                            @Html.Raw("fillcolor");
+                }
+" id="heart"
+                     onclick="AddFavourite()"
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="30"
+                     height="30"
+                     fill="currentColor"
+                     class="bi bi-heart-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                </svg>
+            </div>
+
+            @*<div><span style="font-weight:600">Diễn viên:</span> @Model.Actor</div>*@
+            @*    <div>
+            <span style="font-weight:600">Thể loại: </span>@{
+
+            for (var i = 0; i < @Model.GenreMovies.Count; i++)
+            {
+            for (var j = 0; j < ViewBag.ListGenres.Count; j++)
+            {
+            if (i == j)
+            {
+            @(ViewBag.ListGenres[j].GenreName + ", ")
+            }
+            }
+            }
+
+            }
+            </div>*@
+
+            <div><span style="font-weight:600">Duration:</span> @Model.Movie.Duration minutes</div>
+            <div><span style="font-weight:600">Original Language:</span> @Model.Movie.OriginalLanguage</div>
+            <div><span style="font-weight:600">Description:</span> @Model.Movie.Description</div>
+            <form action="RateCourse" method="post">
+                <div class="star-widget">
+                    <div class="wrapper-ratestar" style="">
+                        <input type="radio" name="rate" id="rate-5" value="5" >
+                        <label for="rate-5" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-4" value="4" >
+                        <label for="rate-4" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-3" value="3" >
+                        <label for="rate-3" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-2" value="2" >
+                        <label for="rate-2" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-1" value="1" >
+                        <label for="rate-1" class="fas fa-star"></label>
+                    </div>
+                    <div class="textarea form-group" style="margin-bottom: 20px; margin-top: 20px">
+                        <textarea class="form-control" style="width: 100%;" cols="30" placeholder="Describe your experience.." name="contentRate"> </textarea>
+                    </div>
+                </div>
+                <button type="submit" class="button button-lg button--primary w-20">
+                    Rate
+                </button>
+                
+            </form>
+
+        </div>
+    </div>
+    <iframe style="margin:30px 30px" width="560" height="315" src="https://www.youtube.com/embed/@Model.Movie.Trailer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<script>
+    function AddFavourite() {
+        var mid = $('#mid').val();
+        $.ajax({
+            url: "/Movies/Detail?handler=Favourite&id=" + mid,
+            type: "get",
+            data: {
+            },
+            success: function () {
+                $("#heart").toggleClass("fillcolor");
+            },
+            //error: function () {
+            //    window.location.href = "/Users/Login";
+            //}
+        });
+    }
+</script>

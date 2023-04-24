@@ -1,0 +1,43 @@
+﻿@page
+@model MovieReviewer.Pages.Admins.Actors.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <h4>@Html.DisplayFor(model => model.Actor.Name)</h4>
+    <hr />
+    <img class="col-md-4" src="@Model.Actor.Img"/>
+    <dl class="row col-md-8">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Actor.Gender)
+        </dt>
+        <dd class="col-sm-10">
+             @(Model.Actor.Gender ? "Female" : "Male")
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Actor.Dob)
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Actor.Dob.ToString("dd/MM/yyyy")
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Actor.Detail)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Actor.Detail)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Actor.Nationality)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Actor.Nationality)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Actor?.ActorId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

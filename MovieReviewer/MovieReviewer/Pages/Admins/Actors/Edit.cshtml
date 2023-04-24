@@ -1,0 +1,60 @@
+﻿@page
+@model MovieReviewer.Pages.Admins.Actors.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Actor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Actor.ActorId" />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Actor.Gender" /> @Html.DisplayNameFor(model => model.Actor.Gender)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Actor.Dob" class="control-label"></label>
+                <input asp-for="Actor.Dob" class="form-control" />
+                <span asp-validation-for="Actor.Dob" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Actor.Img" class="control-label"></label>
+                <input asp-for="Actor.Img" class="form-control" />
+                <span asp-validation-for="Actor.Img" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Actor.Detail" class="control-label"></label>
+                <input asp-for="Actor.Detail" class="form-control" />
+                <span asp-validation-for="Actor.Detail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Actor.Nationality" class="control-label"></label>
+                <input asp-for="Actor.Nationality" class="form-control" />
+                <span asp-validation-for="Actor.Nationality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Actor.Name" class="control-label"></label>
+                <input asp-for="Actor.Name" class="form-control" />
+                <span asp-validation-for="Actor.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

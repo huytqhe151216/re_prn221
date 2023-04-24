@@ -1,0 +1,54 @@
+﻿@page
+@model MovieReviewer.Pages.Users.LoginModel
+@{
+}
+<div class="login-box">
+    <div class="login-logo">
+        <a href="/Index"><b>Movie</b>Reviewer</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">Login</p>
+
+            <form method="post">
+                <div class="input-group mb-3">
+                    <input asp-for="@Model.user.Email" type="text" class="form-control" placeholder="Email" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input asp-for="@Model.user.Password" type="password" class="form-control" placeholder="Mật khẩu" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- /.col -->
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+
+            <div class="social-auth-links text-center mb-3">
+                <p>@Model.message</p>
+            </div>
+            <!-- /.social-auth-links -->
+
+            <p class="mb-1">
+                <a href="/Users/ForgotPassword">Forget password</a>
+            </p>
+            <p class="mb-0">
+                <a href="/Users/Register/" class="text-center">Sign up</a>
+            </p>
+        </div>
+        <!-- /.login-card-body -->
+    </div>
+</div>
