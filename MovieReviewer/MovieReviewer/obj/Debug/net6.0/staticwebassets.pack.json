@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\MovieReviewer.bundle.scp.css"
     },
     {
+      "Id": "D:\\re_prn221\\MovieReviewer\\MovieReviewer\\wwwroot\\Images\\03ef8c56bc24afe8e55d11cb5b524685.mp4",
+      "PackagePath": "staticwebassets\\Images\\03ef8c56bc24afe8e55d11cb5b524685.mp4"
+    },
+    {
+      "Id": "D:\\re_prn221\\MovieReviewer\\MovieReviewer\\wwwroot\\Images\\a258a55770321e98c9be70ab389b280b.png",
+      "PackagePath": "staticwebassets\\Images\\a258a55770321e98c9be70ab389b280b.png"
+    },
+    {
       "Id": "D:\\re_prn221\\MovieReviewer\\MovieReviewer\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

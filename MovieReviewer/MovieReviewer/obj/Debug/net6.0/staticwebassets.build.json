@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uQULMMf7IuCbFQ0LxXXh+NCwZ4FpFk9LeUqYcwQAbx4=",
+  "Hash": "fvEocUltAPz9ZxCXGNYefmR16q1IR9JDBhwLwWNuAZQ=",
   "Source": "MovieReviewer",
   "BasePath": "_content/MovieReviewer",
   "Mode": "Default",
@@ -117,6 +117,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\re_prn221\\MovieReviewer\\MovieReviewer\\wwwroot\\Images\\03ef8c56bc24afe8e55d11cb5b524685.mp4",
+      "SourceId": "MovieReviewer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\re_prn221\\MovieReviewer\\MovieReviewer\\wwwroot\\",
+      "BasePath": "_content/MovieReviewer",
+      "RelativePath": "Images/03ef8c56bc24afe8e55d11cb5b524685.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\03ef8c56bc24afe8e55d11cb5b524685.mp4"
+    },
+    {
+      "Identity": "D:\\re_prn221\\MovieReviewer\\MovieReviewer\\wwwroot\\Images\\a258a55770321e98c9be70ab389b280b.png",
+      "SourceId": "MovieReviewer",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\re_prn221\\MovieReviewer\\MovieReviewer\\wwwroot\\",
+      "BasePath": "_content/MovieReviewer",
+      "RelativePath": "Images/a258a55770321e98c9be70ab389b280b.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\a258a55770321e98c9be70ab389b280b.png"
     },
     {
       "Identity": "D:\\re_prn221\\MovieReviewer\\MovieReviewer\\wwwroot\\js\\site.js",

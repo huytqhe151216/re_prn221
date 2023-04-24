@@ -14,6 +14,11 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Actor.ActorId" />
+            <div class="form-group">
+                <label asp-for="Actor.Name" class="control-label"></label>
+                <input asp-for="Actor.Name" class="form-control" />
+                <span asp-validation-for="Actor.Name" class="text-danger"></span>
+            </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Actor.Gender" /> @Html.DisplayNameFor(model => model.Actor.Gender)
@@ -39,11 +44,7 @@
                 <input asp-for="Actor.Nationality" class="form-control" />
                 <span asp-validation-for="Actor.Nationality" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Actor.Name" class="control-label"></label>
-                <input asp-for="Actor.Name" class="form-control" />
-                <span asp-validation-for="Actor.Name" class="text-danger"></span>
-            </div>
+            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

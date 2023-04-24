@@ -11,7 +11,38 @@
         color: red;
     }
 
-     
+    .removecolor {
+        color: black;
+    }
+    /* hide the radio buttons */
+    .star-rating input[type="radio"] {
+        display: none;
+    }
+
+    /* style the star icons */
+    .star-rating label {
+        display: inline-block;
+        margin: 0 2px;
+        font-size: 24px;
+        color: #ccc;
+        cursor: pointer;
+    }
+
+    /* highlight the stars when the corresponding radio button is checked */
+    .star-rating input[type="radio"]:checked + label,
+    .star-rating input[type="radio"]:checked + label ~ label {
+        color: #f9bf3b;
+    }
+
+    /* make the stars hoverable */
+    .star-rating label:hover {
+        color: #f9bf3b;
+    }
+
+    /* reverse the order of the stars */
+    .star-rating {
+        direction: rtl;
+    }
 
 </style>
 <div margine="max-width:80%; margin:0 auto">
@@ -24,16 +55,17 @@
             <div class="row">
                 <h3 class="col-md-10">@Model.Movie.MovieName</h3>
                 <input type="hidden" value="@Model.Movie.MovieId" id="mid" />
+
                 @{
-                    var setting = new JsonSerializerSettings();
-                    setting.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    //var setting = new JsonSerializerSettings();
+                    //setting.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                     //string json = Context.Session.GetString("user");
                     string json = HttpContext.Session.GetString("user");
                     //string json1 = Context.Session.GetString("user");
                     User user = null;
                     if (json != null)
                     {
-                        user = JsonConvert.DeserializeObject<User>(json, setting);
+                        user = JsonConvert.DeserializeObject<User>(json);
                     }
                     bool checkLove = false;
                     if (user != null)
@@ -41,10 +73,21 @@
                         checkLove = MovieLogic.CheckLoveMovie(user.Id, Model.Movie.MovieId);
                     }
                 }
+                @if (user != null)
+                {
+                    <input type="hidden" value="1" id="user" />
+                }
+                else
+                {
+                    <input type="hidden" value="0" id="user" />
+                }
                 <svg class="col-md-2
                 @{
                             if(checkLove)
-                            @Html.Raw("fillcolor");
+                                        @Html.Raw("fillcolor")
+                            else{
+                                            @Html.Raw("removecolor")
+                            }
                 }
 " id="heart"
                      onclick="AddFavourite()"
@@ -78,28 +121,59 @@
             <div><span style="font-weight:600">Duration:</span> @Model.Movie.Duration minutes</div>
             <div><span style="font-weight:600">Original Language:</span> @Model.Movie.OriginalLanguage</div>
             <div><span style="font-weight:600">Description:</span> @Model.Movie.Description</div>
-            <form action="RateCourse" method="post">
+            <form asp-page-handler="Rate" method="post">
+                <input type="hidden" value="@Model.Movie.MovieId" name="movieId" />
                 <div class="star-widget">
-                    <div class="wrapper-ratestar" style="">
-                        <input type="radio" name="rate" id="rate-5" value="5" >
-                        <label for="rate-5" class="fas fa-star"></label>
-                        <input type="radio" name="rate" id="rate-4" value="4" >
-                        <label for="rate-4" class="fas fa-star"></label>
-                        <input type="radio" name="rate" id="rate-3" value="3" >
-                        <label for="rate-3" class="fas fa-star"></label>
-                        <input type="radio" name="rate" id="rate-2" value="2" >
-                        <label for="rate-2" class="fas fa-star"></label>
-                        <input type="radio" name="rate" id="rate-1" value="1" >
-                        <label for="rate-1" class="fas fa-star"></label>
+                    <div class="star-rating">
+                        @{
+                            if (Model.Rate != null)
+                            {
+                                <input type="radio" id="star5" name="rating" value="5" checked="@(Model.Rate.RateStar == 5)" />
+                                <label for="star5">☆</label>
+                                <input type="radio" id="star4" name="rating" value="4" checked="@(Model.Rate.RateStar == 4)" />
+                                <label for="star4">☆</label>
+                                <input type="radio" id="star3" name="rating" value="3" checked="@(Model.Rate.RateStar == 3)" />
+                                <label for="star3">☆</label>
+                                <input type="radio" id="star2" name="rating" value="2" checked="@(Model.Rate.RateStar == 2)" />
+                                <label for="star2">☆</label>
+                                <input type="radio" id="star1" name="rating" value="1" checked="@(Model.Rate.RateStar == 1)" />
+                                <label for="star1">☆</label>
+                            }
+                            else
+                            {
+                                <input type="radio" id="star5" name="rating" value="5"  />
+                                <label for="star5">☆</label>
+                                <input type="radio" id="star4" name="rating" value="4"  />
+                                <label for="star4">☆</label>
+                                <input type="radio" id="star3" name="rating" value="3"  />
+                                <label for="star3">☆</label>
+                                <input type="radio" id="star2" name="rating" value="2"  />
+                                <label for="star2">☆</label>
+                                <input type="radio" id="star1" name="rating" value="1"  />
+                                <label for="star1">☆</label>
+                            }
+                        }
+
                     </div>
-                    <div class="textarea form-group" style="margin-bottom: 20px; margin-top: 20px">
-                        <textarea class="form-control" style="width: 100%;" cols="30" placeholder="Describe your experience.." name="contentRate"> </textarea>
-                    </div>
+                    @{
+                        if (Model.Rate!=null)
+                        {
+                            <div class="textarea form-group" style="margin-bottom: 20px; margin-top: 20px">
+                                <textarea class="form-control" style="width: 100%;" cols="30" placeholder="Describe your experience.." name="contentRate">@Model.Rate.RateContent </textarea>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="textarea form-group" style="margin-bottom: 20px; margin-top: 20px">
+                                <textarea class="form-control" style="width: 100%;" cols="30" placeholder="Describe your experience.." name="contentRate"> </textarea>
+                            </div>
+                        }
+                    }
                 </div>
                 <button type="submit" class="button button-lg button--primary w-20">
                     Rate
                 </button>
-                
+
             </form>
 
         </div>
@@ -108,6 +182,10 @@
 </div>
 <script>
     function AddFavourite() {
+        var uid = $('#user').val();
+        if (uid === '0') {
+            window.location.href = '/Users/Login';
+        }
         var mid = $('#mid').val();
         $.ajax({
             url: "/Movies/Detail?handler=Favourite&id=" + mid,
@@ -117,9 +195,9 @@
             success: function () {
                 $("#heart").toggleClass("fillcolor");
             },
-            //error: function () {
-            //    window.location.href = "/Users/Login";
-            //}
+            error: function () {
+                $("#heart").toggleClass("removecolor");
+            }
         });
     }
 </script>
