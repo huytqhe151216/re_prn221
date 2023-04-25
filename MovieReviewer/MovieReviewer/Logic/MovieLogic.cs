@@ -27,6 +27,15 @@ namespace MovieReviewer.Logic
             }
             
         }
+        public static void RateLike(int userid, int rateId)
+        {
+            var context = new MovieReviewerContext();
+            //RateLike rate = new RateLike();
+            //rate.UserId = userid;
+            //rate.RateId = rateId;
+            context.Database.ExecuteSqlRaw("Insert into RateLike values("+rateId+","+userid+")");
+            context.SaveChanges();
+        }
         public static void InsertFavourite(int userid,int movieId)
         {
             var context = new MovieReviewerContext();

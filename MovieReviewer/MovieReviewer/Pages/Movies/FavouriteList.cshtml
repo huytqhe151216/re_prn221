@@ -2,21 +2,24 @@
 @model MovieReviewer.Pages.Movies.FavouriteListModel
 @{
     <h1>Favourite List</h1>
-    foreach (var item in Model.ListFavourite)
+    if (Model.ListFavourite!= null)
     {
-        <a style="margin:20px;text-decoration: none" href="/Movies/Detail?id=@item.MovieId">
-            <div class="row">
-                <img class="col-md-4" src="@item.Movie.Poster" alt="" width="250px" height="300px">
-                <div class="col-md-8">
-                    <h3>
-                        @item.Movie.MovieName
-                    </h3>
-                    <div>
-                        @item.Movie.Description
+        foreach (var item in Model.ListFavourite)
+        {
+            <a style="margin:20px;text-decoration: none" href="/Movies/Detail?id=@item.MovieId">
+                <div class="row">
+                    <img class="col-md-4" src="@item.Movie.Poster" alt="" width="250px" height="300px">
+                    <div class="col-md-8">
+                        <h3>
+                            @item.Movie.MovieName
+                        </h3>
+                        <div>
+                            @item.Movie.Description
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        }
     }
 }
 

@@ -10,7 +10,7 @@ namespace MovieReviewer.Pages.Movies
     {
         [BindProperty]
         public List<FavouriteList> ListFavourite { get; set; }
-        public void OnGet()
+        public IActionResult OnGet()
         {
             string json = HttpContext.Session.GetString("user");
             User user = null;
@@ -18,10 +18,11 @@ namespace MovieReviewer.Pages.Movies
             {
                 user = JsonConvert.DeserializeObject<User>(json);
                 ListFavourite = MovieLogic.GetFavouriteIdListById(user.Id);
+                return Page();
             }
             else
             {
-                Redirect("Users/Login");
+                return RedirectToPage("/Users/Login");
             }
 
         }

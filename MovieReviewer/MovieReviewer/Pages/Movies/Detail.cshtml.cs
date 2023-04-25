@@ -72,5 +72,17 @@ namespace MovieReviewer.Pages.Movies
             
             return Redirect("/Movies/Detail?id=" + movieId);
         }
+        public void OnGetLikeRate(int rateId)
+        {
+            string json = HttpContext.Session.GetString("user");
+            User user = null;
+            if (json != null)
+            {
+                user = JsonConvert.DeserializeObject<User>(json);
+                MovieLogic.RateLike(user.Id,rateId);
+            }
+            
+        }
+        
     }
 }
