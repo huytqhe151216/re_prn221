@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using Microsoft.EntityFrameworkCore;
 using MovieReviewer.Models;
 
 namespace MovieReviewer.Logic
@@ -82,6 +83,30 @@ namespace MovieReviewer.Logic
             var context = new MovieReviewerContext();
             Rate rate  = context.Rates.FirstOrDefault(x => x.UserId == userId && x.MovieId == movieId);
             return rate;
+        }
+        public static List<Rate> GetListRateOfMovie(int movieId)
+        {
+            var context = new MovieReviewerContext();
+
+            //return context.Rates.Include(x => x.User).Where(x => x.MovieId == movieId).ToList().OrderBy(x=>x.RateDate);
+            return context.Rates.Include(x=>x.User).OrderBy(x => x.RateDate).Where(x=>x.MovieId==movieId).ToList();
+            //return context.Rates.Where(x=>x.MovieId==movieId).ToList();
+        }
+        public static List<FavouriteList> GetFavouriteIdListById(int id)
+        {
+            var context = new MovieReviewerContext();
+            //return context.FavouriteLists.Where(x=>x.UserId== id).ToList(); 
+            return context.FavouriteLists.Include(x=>x.Movie).Where(x=>x.UserId==id).ToList();
+            
+        }
+        public static List<Movie> GetListFavouriteMovie(int id)
+        {
+            List<Movie> list = new List<Movie>();
+            foreach (var item in GetFavouriteIdListById(id))
+            {
+                list.Add(GetMovieDetail((int)item.MovieId));
+            }
+            return list;
         }
     }
 }

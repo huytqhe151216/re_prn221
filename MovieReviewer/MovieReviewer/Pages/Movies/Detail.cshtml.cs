@@ -12,6 +12,7 @@ namespace MovieReviewer.Pages.Movies
         public Movie Movie { get; set; }
         [BindProperty]
         public Rate Rate { get; set; }
+        public List<Rate> ListRates { get; set; }
         public void OnGet(int id)
         {
             string json = HttpContext.Session.GetString("user");
@@ -25,6 +26,7 @@ namespace MovieReviewer.Pages.Movies
             {
                 Rate = MovieLogic.GetRate(user.Id, id);
             }
+            ListRates = MovieLogic.GetListRateOfMovie(id);
             
         }
         public void OnGetFavourite(int id)

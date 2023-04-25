@@ -100,24 +100,6 @@
                 </svg>
             </div>
 
-            @*<div><span style="font-weight:600">Diễn viên:</span> @Model.Actor</div>*@
-            @*    <div>
-            <span style="font-weight:600">Thể loại: </span>@{
-
-            for (var i = 0; i < @Model.GenreMovies.Count; i++)
-            {
-            for (var j = 0; j < ViewBag.ListGenres.Count; j++)
-            {
-            if (i == j)
-            {
-            @(ViewBag.ListGenres[j].GenreName + ", ")
-            }
-            }
-            }
-
-            }
-            </div>*@
-
             <div><span style="font-weight:600">Duration:</span> @Model.Movie.Duration minutes</div>
             <div><span style="font-weight:600">Original Language:</span> @Model.Movie.OriginalLanguage</div>
             <div><span style="font-weight:600">Description:</span> @Model.Movie.Description</div>
@@ -178,7 +160,22 @@
 
         </div>
     </div>
-    <iframe style="margin:30px 30px" width="560" height="315" src="https://www.youtube.com/embed/@Model.Movie.Trailer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="row">
+        <iframe class="col-md-5" style="margin-top:30px" width="560" height="315" src="https://www.youtube.com/embed/@Model.Movie.Trailer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="col-md-7">
+            @{
+                foreach (var item in Model.ListRates)
+                {
+                    <div>
+                        <img style="width:40px; height:40px" src=@item.User.Img>
+                        <lable>@item.User.Email</lable>
+                        <label>@item.RateStar star</label>
+                        <label>Content: @item.RateContent</label>
+                    </div>
+                }
+            }
+        </div>
+    </div>
 </div>
 <script>
     function AddFavourite() {

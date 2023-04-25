@@ -74,6 +74,7 @@ ADD Name varchar(max);
 alter table movie 
 add  DateCreate date default getdate()
 
-Insert into [User](status,Email,Password,Role,Img) values (1,'huyheotmhp2001@gmail.com','123456',1,'https://www.google.com/url?sa=i&url=https%3A%2F%2Fvov.vn%2Fvan-hoa%2Fsan-khau-dien-anh%2Fson-ye-jin-tai-xuat-man-anh-nho-sau-con-sot-ha-canh-noi-anh-870073.vov&psig=AOvVaw1zk77bC1FW4EVpzbw1WcU-&ust=1682262558445000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKD2q8Xivf4CFQAAAAAdAAAAABAD')
+Insert into [User](status,Email,Password,Role,Img) values (1,'huyheotmhp2001@gmail.com','123456',1,'https://www.google.com/url?sa=i&url=https%3A%2F%2Fvov.vn%2Fvan-hoa%2Fsan-khau-dien-anh%2Fson-ye-jin-tai-xuat-man-anh-nho-sau-con-sot-ha-canh-noi-anh-870073.vov&psig=AOvVaw1zk77bC1FW4EVpzbw1WcU-&ust=1682262558445000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKD2q8Xivf4CFQAAAAAdAAAAABAD'),
+Insert into [User](status,Email,Password,Role,Img) values (1,'huyheotmhp2002@gmail.com','123456',1,'https://www.google.com/url?sa=i&url=https%3A%2F%2Fvov.vn%2Fvan-hoa%2Fsan-khau-dien-anh%2Fson-ye-jin-tai-xuat-man-anh-nho-sau-con-sot-ha-canh-noi-anh-870073.vov&psig=AOvVaw1zk77bC1FW4EVpzbw1WcU-&ust=1682262558445000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKD2q8Xivf4CFQAAAAAdAAAAABAD'),
 Insert into Movie values('The classic','Description','VU1ah3RxIww','https://thegioidienanh.vn/stores/news_dataimages/huonggiang/042018/10/20/1127_xemphimon_co-dien.jpg',155,'Korea')
-select * from FavouriteList
+select * from [User]
