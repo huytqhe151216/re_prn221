@@ -108,5 +108,16 @@ namespace MovieReviewer.Logic
             }
             return list;
         }
+        public static List<Movie> GetAllMovies()
+        {
+            var context = new MovieReviewerContext();
+            return context.Movies.OrderBy(x=>x.DateCreate).ToList();
+        }
+
+        internal static List<Movie> SearchMovies(string query)
+        {
+            var context = new MovieReviewerContext();
+            return context.Movies.Where(x => x.MovieName.ToLower().Contains(query)).ToList();
+        }
     }
 }

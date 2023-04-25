@@ -1,10 +1,27 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "MovieReviewer";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<form id="search-form">
+    <input type="text" name="query" placeholder="Search for movies...">
+    <button type="submit">Search</button>
+</form>
+<h2>
+    List Movie
+</h2>
+<div id="movie-list">
+    <div class="container row">
+        @{
+            foreach (var item in Model.ListAllMovie)
+            {
+                <a style="text-decoration:none;max-height:350px" href="Movies/Detail?id=@item.MovieId" class="col-md-3">
+                    <img src="@item.Poster" style="height:100%;width:100%">
+                    <h3>@item.MovieName</h3>
+                </a>
+            }
+        }
+    </div>
 </div>
+
+
